@@ -17,14 +17,14 @@
                     <li class="nav-item">
                         <a
                             class="nav-link"
-                            href="./index.php"
+                            href="/"
                             >Trang Chủ</a
                         >
                     </li>
                     <li class="nav-item">
                         <a
                             class="nav-link"
-                            href="./index.php?navigate=show_products"
+                            href="/product"
                             >Sản phẩm Thái Công</a
                         >
                     </li>
@@ -35,7 +35,7 @@
                     ?>
                     <?php if(isset($_SESSION['user_id'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php?navigate=cart">Giỏ hàng</a>
+                        <a class="nav-link" href="/cart">Giỏ hàng</a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown show">
@@ -56,18 +56,18 @@
                                 aria-labelledby="dropdownMenuLink"
                             >
                                 <a
-                                    href="./index.php?navigate=profile"
+                                    href="/profile"
                                     class="dropdown-item"
                                     >Thông tin tài khoản</a
                                 >
                                 <a
                                     class="dropdown-item"
-                                    href="./index.php?navigate=order_history"
+                                    href="/order-history"
                                     >Lịch sử đặt hàng</a
                                 >
                                 <a
                                     class="dropdown-item"
-                                    href="./pages/main/account/logout.php"
+                                    href="/logout"
                                     >Đăng xuất</a
                                 >
                             </div>
@@ -78,14 +78,14 @@
                     <li class="nav-item">
                         <a
                             class="nav-link"
-                            href="./index.php?navigate=login"
+                            href="/login"
                             >Đăng nhập</a
                         >
                     </li>
                     <li class="nav-item">
                         <a
                             class="nav-link"
-                            href="./index.php?navigate=signup"
+                            href="/signup"
                             >Đăng ký</a
                         >
                     </li>
