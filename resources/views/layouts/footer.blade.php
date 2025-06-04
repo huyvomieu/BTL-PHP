@@ -10,7 +10,7 @@
                     <i>Address: Bắc Từ Liêm, Hà Nội, Việt Nam</i>
                 </p>
                 <p class="pt-2 text-light">
-                    <i>Email: Nhom19@gmail.com</i>
+                    <i>Email: Nhom6@gmail.com</i>
                 </p>
                 <p>
                     <a class="pt-2 text-light" href="tel:+0987654321"><i>Phone: 0987654321</i></a>
