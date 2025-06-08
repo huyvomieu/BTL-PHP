@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,5 +18,34 @@ class CartDetail extends Model
     {
         return $query->where('cart_id', $this->cart_id)
                      ->where('product_id', $this->product_id);
+    }
+    public function getListCartById($cartId) {
+        return DB::table($this->table)
+        ->join('tblproduct', $this->table.'.product_id', '=', 'tblproduct.product_id')
+        ->where($this->table.'.cart_id', $cartId)
+        ->get();
+    }
+
+    public function incrementQuantity($cart_id, $product_id) {
+        return DB::table($this->table)
+        ->where('cart_id', $cart_id)
+        ->where('product_id', $product_id)
+        ->update( [
+            'quantity' => DB::raw('quantity + 1')
+        ]);
+    }
+    public function decrementQuantity($cart_id, $product_id) {
+        return DB::table($this->table)
+        ->where('cart_id', $cart_id)
+        ->where('product_id', $product_id)
+        ->update( [
+            'quantity' => DB::raw('quantity - 1')
+        ]);
+    }
+    public function removeProductFromCart($cart_id, $product_id) {
+        return DB::table($this->table)
+        ->where('cart_id', $cart_id)
+        ->where('product_id', $product_id)
+        ->delete();
     }
 }

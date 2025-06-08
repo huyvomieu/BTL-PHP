@@ -18,11 +18,14 @@ Route::get('/product/{id}', [ProductController::class, 'detail'])->where('id', '
 Route::get('/cart', [ProductController::class, 'index']);
 
 // Routes Orders
+Route::get('/order/confirm', [OrderController::class, 'confirmFromCart']);
 Route::post('/order/confirm/{id}', [OrderController::class, 'confirm']);
 // Route::get('/order/confirm/{id}', [OrderController::class, 'confirm']);
 
 // Routes Cart
+Route::get('/cart', [CartController::class, 'index']);
 Route::get('/cart/add/{product_id}/{quantity}', [CartController::class, 'add']);
+Route::get('/cart/update/{product_id}/{type}', [CartController::class, 'update']);
 
 
 // Routes Auth
