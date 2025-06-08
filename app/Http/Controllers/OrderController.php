@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\CartDetail;
 class OrderController extends Controller
 {
-    public function confirm(Request $request, $id) {
+    public function confirm(Request $request, $id)
+    {
         $product = Product::find($id);
         $quantity = $request->input('quantity');
         $user_id = session('user_id', '12');  // Mặc định là 12 vì chưa làm phần login, logout
@@ -18,6 +20,17 @@ class OrderController extends Controller
             'product' => $product,
             'user' => $user,
             'quantity' => $quantity
+        ]);
+    }
+    public function confirmFromCart()
+    {
+        $user_id = session('user_id', '12');  // Mặc định là 12 vì chưa làm phần login, logout
+        $user = User::find($user_id);
+        $carts = (new CartDetail())->getListCartById($user_id);
+
+        return view('order.confirmFromCart', [
+            'carts' => $carts,
+            'user' => $user,
         ]);
     }
 }
