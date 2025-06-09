@@ -11,13 +11,13 @@
                     <div class="form-outline mb-4">
                         <label class="font-weight-bold" for="username">Login name</label>
                         <input required type="text" id="username" class="form-control form-control-lg" name="username"
-                            placeholder="Enter username" />
+                            placeholder="Enter username" autocomplete="off" />
                     </div>
 
                     <div class="form-outline mb-3">
                         <label class="font-weight-bold" for="password">Password</label>
                         <input required type="password" id="password" class="form-control form-control-lg" name="password"
-                            placeholder="Enter password" />
+                            placeholder="Enter password" autocomplete="off" />
                     </div>
                     <p class="text-center text-danger"><strong><?php if (isset($alert))
         echo $alert?></strong></p>
