@@ -28,11 +28,25 @@
                                     Tài khoản
                                 </a>
 
-                                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
-                                    <a href="/profile" class="dropdown-item">Thông tin tài khoản</a>
-                                    <a class="dropdown-item" href="/order-history">Lịch sử đặt hàng</a>
-                                    <a class="dropdown-item" href="/logout">Đăng xuất</a>
-                                </div>
+                            <div
+                                class="dropdown-menu bg-dark"
+                                aria-labelledby="dropdownMenuLink"
+                            >
+                                <a
+                                    href="/profile"
+                                    class="dropdown-item"
+                                    >Thông tin tài khoản</a
+                                >
+                                <a
+                                    class="dropdown-item"
+                                    href="/order/history"
+                                    >Lịch sử đặt hàng</a
+                                >
+                                <a
+                                    class="dropdown-item"
+                                    href="/logout"
+                                    >Đăng xuất</a
+                                >
                             </div>
                         </li>
                     @else
