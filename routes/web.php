@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
@@ -45,3 +46,9 @@ Route::post('register', [AuthController::class, 'registerPost'])->name('register
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'loginPost'])->name('loginPost');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+// Profile, Password of User 
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::get('/profilechange', [UserController::class, 'profilechange'])->name('profilechange');
+Route::post('/profilechange', [UserController::class, 'profileUpdate'])->name('profileUpdate');
+Route::get('/passchange', [UserController::class, 'passChange'])->name('passChange');
+Route::post('/passchange', [UserController::class, 'passUpdate'])->name('passUpdate');
