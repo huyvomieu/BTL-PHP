@@ -92,10 +92,10 @@
                     <?php } ?>
                 </ul>
                 <form
-                    action="index.php?navigate=show_products"
+                    action="/search"
                     class="d-flex"
                     role="search"
-                    method="POST"
+                    method="GET"
                 >
                 <input
                     type="search"

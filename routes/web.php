@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 
 // Routes Pages
 Route::get('/', [PageController::class, 'index']);
+Route::get('/search', [PageController::class, 'search']);
 
 
 // Routes Products
