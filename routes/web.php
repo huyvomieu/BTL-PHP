@@ -20,7 +20,9 @@ Route::get('/cart', [ProductController::class, 'index']);
 // Routes Orders
 Route::get('/order/confirm', [OrderController::class, 'confirmFromCart']);
 Route::post('/order/confirm/{id}', [OrderController::class, 'confirm']);
-// Route::get('/order/confirm/{id}', [OrderController::class, 'confirm']);
+Route::post('/order/process-payment', [OrderController::class, 'processPayment']);
+Route::get('/order/history', [OrderController::class, 'history']);
+Route::get('/order/return-vnpay', [OrderController::class, 'returnVnpay']);
 
 // Routes Cart
 Route::get('/cart', [CartController::class, 'index']);

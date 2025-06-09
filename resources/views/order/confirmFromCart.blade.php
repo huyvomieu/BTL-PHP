@@ -55,7 +55,8 @@
             </div>
             <div class="col-lg-4 mt-5">
                 <div>
-                    <form method="POST" action="pages/main/order/process_payment.php">
+                    <form method="POST" action="/order/process-payment?method=vnpay">
+                        @csrf
                         <p class="mt-2 text-center">Phương Thức Thanh Toán</p>
                         <input class="d-block btn btn-success mt-3 w-100" type="submit" name="cod"
                             value="Cash on Delivery (COD)">
@@ -63,13 +64,15 @@
                             value="Payment via VNPAY">
                     </form>
                     <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-                        action="pages/main/order/momo_qr_payment.php">
+                        action="/order/momo_qr_payment">
+                        @csrf
                         <input type="hidden" name="total_value" value="total_value">
                         <input class="btn text-light mt-3 w-100" style="background-color: #ae2170; border-color: #ae2170;"
                             type="submit" value="Payment via MOMO QR Code">
                     </form>
                     <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-                        action="pages/main/order/momo_atm_payment.php">
+                        action="/order/momo_atm_payment">
+                        @csrf
                         <input type="hidden" name="total_value" value="total_value">
                         <input class="btn text-light mt-3 w-100" style="background-color: #ae2170; border-color: #ae2170;"
                             type="submit" value="Payment via MOMO ATM">
