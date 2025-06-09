@@ -9,19 +9,23 @@ use App\Models\Product;
 use App\Models\Category;
 class ProductController extends Controller
 {
-    public function index() {
-        // $products = DB::select("SELECT * FROM tblproduct");
-        // $products = DB::table('tblproduct')->get();
-        $products = Product::all();
+    public function index(Request $request)
+    {
+        $id = $request->query('c');
+        if (!empty($id)) {
+            $products = Product::where('category_id', $id)
+                        ->get();
+        } else {
+            $products = Product::all();
+        }
         $categories = Category::all();
-
-        // dd($products);
         return view('products.index', [
             'products' => $products,
             'categories' => $categories,
         ]);
     }
-    public function detail($id) {
+    public function detail($id)
+    {
 
         $product = Product::find($id);
         // dd($product);
@@ -29,7 +33,8 @@ class ProductController extends Controller
             'product' => $product
         ]);
     }
-    public function search() {
+    public function search()
+    {
         return response()->json('ok');
     }
 }

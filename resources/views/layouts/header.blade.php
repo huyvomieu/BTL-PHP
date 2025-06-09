@@ -58,11 +58,27 @@
                         </li>
                     @endif
                 </ul>
-                <form action="index.php?navigate=show_products" class="d-flex" role="search" method="POST">
-                    <input type="search" placeholder="Title..." class="form-control border-0"
-                        style="border-radius: 4px 0 0 4px" name="keyword" aria-label="Search" />
-                    <input type="submit" class="btn bg-transparent border-light text-light"
-                        style="border-radius: 0 4px 4px 0" name="search" value="Search" />
+                <form
+                    action="/search"
+                    class="d-flex"
+                    role="search"
+                    method="GET"
+                >
+                <input
+                    type="search"
+                    placeholder="Title..."
+                    class="form-control border-0"
+                    style="border-radius: 4px 0 0 4px"
+                    name="keyword"
+                    aria-label="Search"
+                />
+                <input
+                    type="submit"
+                    class="btn bg-transparent border-light text-light"
+                    style="border-radius: 0 4px 4px 0"
+                    name="search"
+                    value="Search"
+                />
                 </form>
             </div>
         </div>
