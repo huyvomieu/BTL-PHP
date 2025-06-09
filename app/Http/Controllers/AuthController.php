@@ -19,6 +19,7 @@ class AuthController extends Controller
 
         if ($user) {
             auth()->login($user);
+            session(['user_id' => $user->user_id]); // Gán session ở đây
             return redirect()->intended('/');
         }
         return redirect()->back()->withErrors(['username' => 'Invalid credentials']);
@@ -27,6 +28,8 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
+        session()->forget('user_id'); // Xóa session khi đăng xuất
+        session()->flush(); // Xóa tất cả session
         return redirect('/login');
     }
     public function register()
