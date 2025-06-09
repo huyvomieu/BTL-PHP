@@ -48,4 +48,11 @@ class CartDetail extends Model
         ->where('product_id', $product_id)
         ->delete();
     }
+    public function getTotalPrice($cart_id) {
+        return DB::table($this->table)
+        ->where('cart_id', $cart_id)
+        ->join('tblproduct', $this->table.'.product_id', '=', 'tblproduct.product_id')
+        ->select(DB::raw('SUM(tblcart_details.quantity * tblproduct.product_price) as total'))
+        ->value('total');
+    }
 }
