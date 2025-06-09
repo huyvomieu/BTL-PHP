@@ -62,7 +62,7 @@
                                 >
                                 <a
                                     class="dropdown-item"
-                                    href="/order-history"
+                                    href="/order/history"
                                     >Lịch sử đặt hàng</a
                                 >
                                 <a
