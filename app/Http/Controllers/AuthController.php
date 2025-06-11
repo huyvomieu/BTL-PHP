@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -13,7 +15,7 @@ class AuthController extends Controller
     }
     public function loginPost(Request $request)
     {
-        $user = \App\Models\User::where('user_loginname', $request->username)
+        $user = User::where('user_loginname', $request->username)
             ->where('user_password', md5($request->password))
             ->first();
 
@@ -48,7 +50,7 @@ class AuthController extends Controller
             'password-repeat' => 'required|string|min:6'
         ]);
 
-        $user = new \App\Models\User();
+        $user = new User();
         $user->user_fullname = $request->fullname;
         $user->user_address = $request->address;
         $user->user_email = $request->email;
@@ -59,6 +61,13 @@ class AuthController extends Controller
         $user->user_enabled = 1;
         $user->user_deleted = 0;
         $user->save();
+
+        // Tạo Cart đồng thời với user khi đăng ký
+        DB::table('tblcart')
+        ->insert([
+            'cart_id' => $user->user_id,
+            'user_id' => $user->user_id,
+        ]);
 
         auth()->login($user);
 
