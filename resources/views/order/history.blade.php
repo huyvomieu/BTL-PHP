@@ -9,7 +9,7 @@
                     <thead>
                         <tr class="text-center">
                             <th scope="col">STT</th>
-                            <th scope="col">ID</th>
+                            <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Người Nhận</th>
                             <th scope="col">Thời Gian</th>
                             <th scope="col">Tổng Thanh Toán</th>
@@ -22,19 +22,23 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td>1</td>
-                                    <td> echo $row_getOrder['order_id']; ?></td>
-                                    <td> echo $row_getOrder['order_receiver']; ?></td>
-                                    <td> echo $row_getOrder['order_created_time']; ?></td>
-                                    <td> echo number_format($row_getOrder['order_value'], 0, ',', '.'); ?> VND</td>
-                                    <td class="">status</td>
+                                    <td> {{ $order->order_id }}</td>
+                                    <td> {{ $order->order_receiver }}</td>
+                                    <td> {{ $order->order_created_time }}</td>
+                                    <td> {{ number_format($order->order_value) }} VND</td>
+                                    <td class="{{ $order->order_status == 1 ? "text-success" : "text-info" }}">
+                                        {{ $order->order_status == 1 ? "Thành công" : "Đang xử lý" }}
+                                    </td>
                                     <td>
-                                        <a href="index.php?navigate=order_details&id=echo $row_getOrder['order_id']">Xem</a>
+                                        <a href="/order/detail/{{ $order->order_id }}">Xem</a>
                                     </td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr >
-                                <td colspan="7"><p class="text-center">Không Có Lịch Sử Đặt Hàng Nào!</p></td>
+                            <tr>
+                                <td colspan="7">
+                                    <p class="text-center">Không Có Lịch Sử Đặt Hàng Nào!</p>
+                                </td>
                             </tr>
                         @endif
                     </tbody>

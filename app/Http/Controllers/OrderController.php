@@ -156,12 +156,26 @@ class OrderController extends Controller
         $user_id = session('user_id');
         $orders = DB::table('tblorder')
         ->where('user_id', $user_id )
+        ->get();
+        return view('order.history', [
+            'orders' => $orders
+        ]);
+    }
+    public function detail($id) {
+        $order_info = DB::table('tblorder')
+        ->where('order_id', $id )
+        ->select(['order_receiver', 'order_phone' , 'order_created_time', 'order_notes', 'order_code', 'order_payment'])
+        ->first();
+
+        $order_details = DB::table('tblorder')
+        ->where('tblorder.order_id', $id )
         ->join('tblorder_details', 'tblorder.order_id', '=' , 'tblorder_details.order_id')
         ->join('tblproduct', 'tblorder_details.product_id', '=', 'tblproduct.product_id')
         ->get();
-        // dd($orders);
-        return view('order.history', [
-            'orders' => $orders
+
+        return view('order.detail', [
+            'order_details' => $order_details,
+            'order_info' => $order_info
         ]);
     }
 }
