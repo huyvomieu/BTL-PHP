@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderDetail;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\CartDetail;
-use App\Models\Order;
+// use App\Models\OrderDetail;
 class OrderController extends Controller
 {
     public function confirm(Request $request, $id)
     {
         $product = Product::find($id);
         $quantity = $request->input('quantity');
-        $user_id = session('user_id', '12');  // Mặc định là 12 vì chưa làm phần login, logout
+        $user_id = session('user_id');
 
         $user = User::find($user_id);
         return view('order.confirm', [
@@ -26,7 +27,7 @@ class OrderController extends Controller
     }
     public function confirmFromCart()
     {
-        $user_id = session('user_id', '12');  // Mặc định là 12 vì chưa làm phần login, logout
+        $user_id = session('user_id');  // Mặc định là 12 vì chưa làm phần login, logout
         $user = User::find($user_id);
         $carts = (new CartDetail())->getListCartById($user_id);
 
@@ -37,7 +38,7 @@ class OrderController extends Controller
     }
     public function processPayment(Request $request)
     {
-        $user_id = session('user_id', '12');
+        $user_id = session('user_id');
         $totalPrice = (new CartDetail())->getTotalPrice($user_id);
         $method = $request->query('method');
         if ($method == 'vnpay') {
@@ -50,7 +51,6 @@ class OrderController extends Controller
             $vnp_HashSecret = config('vnpay.vnp_hashsecret');
             $vnp_Url = config('vnpay.vnp_url');
             $vnp_Returnurl = config('vnpay.vnp_returnurl');
-            ;
 
             //Expire
             date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -103,7 +103,7 @@ class OrderController extends Controller
     }
     public function returnVnpay(Request $request)
     {
-        $user_id = session('user_id', '12');  // Mặc định là 12 vì chưa làm phần login, logout
+        $user_id = session('user_id');  // Mặc định là 12 vì chưa làm phần login, logout
         $user = User::find($user_id);
         $order_created_time = date("Y-m-d H:i:s");
         $order_receiver = $user->user_fullname;
@@ -146,6 +146,15 @@ class OrderController extends Controller
     }
     public function history()
     {
-        return view('order.history');
+        $user_id = session('user_id');
+        $orders = DB::table('tblorder')
+        ->where('user_id', $user_id )
+        ->join('tblorder_details', 'tblorder.order_id', '=' , 'tblorder_details.order_id')
+        ->join('tblproduct', 'tblorder_details.product_id', '=', 'tblproduct.product_id')
+        ->get();
+        // dd($orders);
+        return view('order.history', [
+            'orders' => $orders
+        ]);
     }
 }

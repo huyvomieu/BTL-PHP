@@ -38,7 +38,7 @@
                                             <h6>{{ number_format($product->product_price, 0, ',', '.') }} VND</h6>
                                         @endif
     
-                                        @if (isset($_SESSION['user_id']))
+                                        @if (session('user_id'))
     
                                             <a href="/product/{{ $product->product_id }}" class="btn btn-info">Buy</a>
                                         @else

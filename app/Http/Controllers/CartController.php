@@ -14,7 +14,7 @@ class CartController extends Controller
     }
     // Lấy ra thông tin giỏ hàng của user
     public function index() {
-        $user_id = session('user_id', '12');
+        $user_id = session('user_id');
         $carts = $this->cartDetailModel->getListCartById($user_id);
         // dd($carts);
         return view('cart.index', [
@@ -24,7 +24,7 @@ class CartController extends Controller
     // Thêm sản phẩm vào giỏ hàng
     public function add($product_id, $quantity)
     {
-        $user_id = session('user_id', '12');
+        $user_id = session('user_id');
         $detail = CartDetail::where('cart_id', $user_id)
             ->where('product_id', $product_id)
             ->first();
@@ -43,7 +43,7 @@ class CartController extends Controller
     }
     // Cập nhật thông tin giỏ hàng
     public function update($product_id, $type) {
-        $user_id = session('user_id', '12');
+        $user_id = session('user_id');
         if($type == 'plus') {
             $this->cartDetailModel->incrementQuantity($user_id,$product_id);
             return redirect()->back();
