@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderSuccessMail;
 use App\Models\OrderDetail;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\CartDetail;
-// use App\Models\OrderDetail;
+use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
 {
     public function confirm(Request $request, $id)
@@ -114,7 +116,7 @@ class OrderController extends Controller
         $order_payment = 'vnpay';
         $order_code = $request->query('vnp_TxnRef');
         // INSERT BẢN GHI VÀO BẢNG ORDER
-        $order_id =  Order::insertGetId([
+        $order =  Order::create([
             'user_id' => $user_id,
             'order_created_time' => $order_created_time,
             'order_address' => $order_address,
@@ -128,12 +130,12 @@ class OrderController extends Controller
         ]);
         // DUYỆT INSERT BẢN GHI VÀO BẢNG ORDER_DETAILS
         $products = (new CartDetail())->getListCartById($user_id);
-        $data = $products->map(function ($product) use ($order_id, $order_code) {
+        $data = $products->map(function ($product) use ($order) {
             return [
-                'order_id' => $order_id,
+                'order_id' => $order->order_id,
                 'product_id' => $product->product_id,
                 'quantity' => $product->quantity, // mặc định số lượng
-                'order_code' => $order_code,
+                'order_code' => $order->order_code,
                 'purchase_price' => $product->product_price,
             ];
         })->toArray();
@@ -141,8 +143,13 @@ class OrderController extends Controller
         // XÓA GIỎ HÀNG SAU KHI THANH TOÁN SONG
 
         // GIẢM SỐ LƯỢNG PRODUCT 
+
+        // Gửi mail xác nhận cho user 
+        Mail::to($user->user_email)->send(new OrderSuccessMail($order));
         
-        return view('order.finish');
+        return view('order.finish', [
+            'order' => $order
+        ]);
     }
     public function history()
     {

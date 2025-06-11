@@ -19,10 +19,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 0 ?>
+                            @php
+                                $i = 0;
+                                $total_value = 0;
+                                $total_quantity = 0;
+                            @endphp
                             @foreach ($carts as $cart)
+                                @php
+                                    $i++;
+                                    $total_value += $cart->product_price;
+                                    $total_quantity += $cart->quantity;
+                                @endphp
                                 <tr class="text-center">
-                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $i }}</td>
                                     <td>{{ $cart->product_title }}</td>
                                     <td><img class="product-img" style="width: 260px" src="/assets/images/products/{{ $cart->product_image }}"></td>
                                     <td>
@@ -41,8 +50,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="3">Total value: VND</th>
-                                <th colspan="2">Total quantity: total_quantity</th>
+                                <th colspan="3">Total value: {{ $total_value }} VND</th>
+                                <th colspan="2">Total quantity: {{ $total_quantity }}</th>
                                 <td>
                                     <a class="btn btn-danger w-100" href="/cart/delete">Xóa hết</a>
                                 </td>
