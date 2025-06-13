@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 
+require __DIR__.'/admin.php';
 
 // Routes Pages
 Route::get('/', [PageController::class, 'index']);
