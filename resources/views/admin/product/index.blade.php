@@ -27,10 +27,9 @@
         <div class="col-md-2">
             <select class="form-control">
                 <option>Tất cả danh mục</option>
-                <option>Sofa</option>
-                <option>Bàn ghế</option>
-                <option>Tủ kệ</option>
-                <option>Giường ngủ</option>
+                @foreach($categories as $category)
+                    <option>{{ $category->category_name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="col-md-2">
@@ -85,153 +84,51 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=60&width=60" alt="Sofa" class="img-thumbnail"
-                                            style="width: 60px; height: 60px;">
-                                    </td>
-                                    <td>
-                                        <strong>Sofa da thật 3 chỗ ngồi</strong>
-                                        <br><small class="text-muted">SKU: SF001</small>
-                                    </td>
-                                    <td><span class="badge badge-primary">Sofa</span></td>
-                                    <td>
-                                        <strong>15,500,000₫</strong>
-                                        <br><small class="text-muted text-decoration-line-through">18,000,000₫</small>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">25</span>
-                                    </td>
-                                    <td><span class="badge badge-success">Còn hàng</span></td>
-                                    <td>
-                                        15/11/2024
-                                        <br><small class="text-muted">10:30</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa" data-toggle="modal"
-                                                data-target="#editProductModal">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Xóa" data-toggle="modal"
-                                                data-target="#deleteProductModal">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=60&width=60" alt="Bàn ăn" class="img-thumbnail"
-                                            style="width: 60px; height: 60px;">
-                                    </td>
-                                    <td>
-                                        <strong>Bàn ăn gỗ sồi 6 chỗ</strong>
-                                        <br><small class="text-muted">SKU: BA002</small>
-                                    </td>
-                                    <td><span class="badge badge-info">Bàn ghế</span></td>
-                                    <td>
-                                        <strong>8,200,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">5</span>
-                                    </td>
-                                    <td><span class="badge badge-warning">Sắp hết</span></td>
-                                    <td>
-                                        12/11/2024
-                                        <br><small class="text-muted">14:15</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Xóa">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=60&width=60" alt="Tủ quần áo"
-                                            class="img-thumbnail" style="width: 60px; height: 60px;">
-                                    </td>
-                                    <td>
-                                        <strong>Tủ quần áo 4 cánh gương</strong>
-                                        <br><small class="text-muted">SKU: TU003</small>
-                                    </td>
-                                    <td><span class="badge badge-secondary">Tủ kệ</span></td>
-                                    <td>
-                                        <strong>12,800,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">0</span>
-                                    </td>
-                                    <td><span class="badge badge-danger">Hết hàng</span></td>
-                                    <td>
-                                        08/11/2024
-                                        <br><small class="text-muted">09:20</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Xóa">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=60&width=60" alt="Giường ngủ"
-                                            class="img-thumbnail" style="width: 60px; height: 60px;">
-                                    </td>
-                                    <td>
-                                        <strong>Giường ngủ King Size có ngăn kéo</strong>
-                                        <br><small class="text-muted">SKU: GN004</small>
-                                    </td>
-                                    <td><span class="badge badge-dark">Giường ngủ</span></td>
-                                    <td>
-                                        <strong>22,500,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">12</span>
-                                    </td>
-                                    <td><span class="badge badge-success">Còn hàng</span></td>
-                                    <td>
-                                        05/11/2024
-                                        <br><small class="text-muted">16:45</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Xóa">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($products as $index => $product)
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>
+                                            <img src="/assets/images/products/{{ $product->product_image }}" alt="Sofa"
+                                                class="img-thumbnail" style="width: 60px; height: 60px;">
+                                        </td>
+                                        <td>
+                                            <strong>{{ $product->product_title }}</strong>
+                                            <br><small class="text-muted">SKU: SF001</small>
+                                        </td>
+                                        <td><span class="badge badge-primary">{{ $product->category_name }}</span></td>
+                                        <td>
+                                            <strong>{{ number_format($product->product_price * (100 - $product->product_discount) / 100, 0, ',', '.') }}₫</strong>
+                                            <br><small
+                                                class="text-muted text-decoration-line-through">{{ number_format($product->product_price, 0, ',', '.') }}₫</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-success">{{ $product->product_quantity }}</span>
+                                        </td>
+                                        <td><span
+                                                class="badge badge-success">{{ $product->product_quantity > 0 ? "Còn hàng" : "Hết hàng" }}</span>
+                                        </td>
+                                        <td>
+                                            {{ $product->create_date }}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-sm btn-info" title="Xem chi tiết">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button btn-edit-product class="btn btn-sm btn-warning" title="Chỉnh sửa"
+                                                    data-toggle="modal" data-id="{{ $product->product_id }}"
+                                                    data-target="#editProductModal">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button btn-delete-product class="btn btn-sm btn-danger" title="Xóa"
+                                                    data-toggle="modal" data-target="#deleteProductModal"
+                                                    data-id="{{ $product->product_id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -243,8 +140,8 @@
                                 <a class="page-link" href="#" tabindex="-1">Trước</a>
                             </li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="/admin/products?page=2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="/admin/products?page=3">3</a></li>
                             <li class="page-item">
                                 <a class="page-link" href="#">Sau</a>
                             </li>
@@ -261,49 +158,48 @@
     <!-- Add Product Modal -->
     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Thêm sản phẩm mới</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
+            <form action="/admin/products/create" method="post">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm sản phẩm mới</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label>Tên sản phẩm *</label>
-                                    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm">
+                                    <label>Tên sản phẩm
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="product_title"
+                                        placeholder="Nhập tên sản phẩm">
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả ngắn</label>
-                                    <textarea class="form-control" rows="3" placeholder="Mô tả ngắn về sản phẩm"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết</label>
-                                    <textarea class="form-control" rows="5"
-                                        placeholder="Mô tả chi tiết về sản phẩm"></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Mô tả ngắn về sản phẩm"
+                                        name="product_description"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Danh mục *</label>
-                                    <select class="form-control">
-                                        <option>Chọn danh mục</option>
-                                        <option>Sofa</option>
-                                        <option>Bàn ghế</option>
-                                        <option>Tủ kệ</option>
-                                        <option>Giường ngủ</option>
+                                    <label>Danh mục <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="category_id">
+                                        <option selected disabled>Chọn danh mục</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>SKU</label>
-                                    <input type="text" class="form-control" placeholder="Mã sản phẩm">
+                                    <input type="text" class="form-control" placeholder="Mã sản phẩm" name="product_sku">
                                 </div>
                                 <div class="form-group">
                                     <label>Trạng thái</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="product_status">
                                         <option value="1">Còn hàng</option>
                                         <option value="0">Hết hàng</option>
                                         <option value="2">Ngừng bán</option>
@@ -317,20 +213,21 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Giá gốc *</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label>Giá gốc <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" placeholder="0" name="product_price">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Giá khuyến mãi</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label>Giá khuyến mãi(% giảm giá)</label>
+                                    <input type="number" class="form-control" placeholder="0" name="product_discount"
+                                        value="0">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Số lượng tồn kho *</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label>Số lượng tồn kho <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" placeholder="0" name="product_quantity">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -369,13 +266,14 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary" id="btn-add-product">Lưu sản phẩm</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary">Lưu sản phẩm</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -394,28 +292,23 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label>Tên sản phẩm *</label>
-                                    <input type="text" class="form-control" value="Sofa da thật 3 chỗ ngồi">
+                                    <label>Tên sản phẩm <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="" id="product_title"
+                                        name="product_title">
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả ngắn</label>
-                                    <textarea class="form-control"
-                                        rows="3">Sofa da thật cao cấp, thiết kế hiện đại</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết</label>
-                                    <textarea class="form-control"
-                                        rows="5">Sofa da thật 100%, khung gỗ sồi chắc chắn, thiết kế hiện đại phù hợp với mọi không gian phòng khách.</textarea>
+                                    <textarea class="form-control" rows="3" id="product_description"
+                                        name="product_description"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Danh mục *</label>
+                                    <label>Danh mục <span class="text-danger">*</span></label>
                                     <select class="form-control">
-                                        <option selected>Sofa</option>
-                                        <option>Bàn ghế</option>
-                                        <option>Tủ kệ</option>
-                                        <option>Giường ngủ</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -438,20 +331,20 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Giá gốc *</label>
-                                    <input type="number" class="form-control" value="18000000">
+                                    <label>Giá gốc <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="product_price" name="product_price">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Giá khuyến mãi</label>
-                                    <input type="number" class="form-control" value="15500000">
+                                    <input type="number" class="form-control" id="product_discount" name="product_discount">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Số lượng tồn kho *</label>
-                                    <input type="number" class="form-control" value="25">
+                                    <label>Số lượng tồn kho <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="product_quantity" name="product_quantity">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -468,13 +361,11 @@
                             <label>Hình ảnh hiện tại</label>
                             <div class="row mb-3">
                                 <div class="col-md-2">
-                                    <img src="/placeholder.svg?height=100&width=100" class="img-thumbnail"
-                                        style="width: 100px;">
+                                    <img src="" class="img-thumbnail" style="width: 100px;">
                                     <button type="button" class="btn btn-sm btn-danger mt-1">Xóa</button>
                                 </div>
                                 <div class="col-md-2">
-                                    <img src="/placeholder.svg?height=100&width=100" class="img-thumbnail"
-                                        style="width: 100px;">
+                                    <img src="" class="img-thumbnail" style="width: 100px;">
                                     <button type="button" class="btn btn-sm btn-danger mt-1">Xóa</button>
                                 </div>
                             </div>
@@ -507,9 +398,40 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-danger" id="btn-confirm-delete">Xóa</button>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        var btnEditProduct = document.querySelectorAll('button[btn-edit-product]');
+        btnEditProduct.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const product_id = btn.getAttribute('data-id');
+                $.get('/api/products/' + product_id, function (res, status) {
+                    const data = res;
+                    $('#product_title').val(data.product_title);
+                    $('#product_description').val(data.product_description);
+                    $('#product_price').val(data.product_price);
+                    $('#product_discount').val(data.product_discount);
+                    $('#product_quantity').val(data.product_quantity);
+                }).fail(function (err) {
+                    console.log(err);
+                })
+
+            })
+        })
+        $('button[btn-delete-product]').each(function () {
+            $(this).on('click', function () {
+                const product_id = $(this).attr('data-id');
+                $('#btn-confirm-delete').on('click', function () {
+                    window.location.href =  `/admin/products/delete/${product_id}`;
+                });
+            });
+        });
+
+    </script>
 @endsection
