@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ProductController;
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/category', [CategoryController::class, 'index']);
 Route::get('/admin/products', [ProductController::class, 'index']);
+Route::post('/admin/products/create', [ProductController::class, 'create']);
+Route::get('/admin/products/delete/{id}', [ProductController::class, 'deleteById']);
 Route::get('/admin/orders', [OrderController::class, 'index']);
 Route::get('/admin/users', [UserController::class, 'index']);
 Route::get('/admin/reports', [ReportController::class, 'index']);
