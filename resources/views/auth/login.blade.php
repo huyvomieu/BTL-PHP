@@ -8,6 +8,11 @@
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form method="POST" action="{{ route('loginPost') }}">
                     @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger text-center">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
                     <div class="form-outline mb-4">
                         <label class="font-weight-bold" for="username">Login name</label>
                         <input required type="text" id="username" class="form-control form-control-lg" name="username"

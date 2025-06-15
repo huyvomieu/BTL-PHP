@@ -15,6 +15,18 @@ class AuthController extends Controller
     }
     public function loginPost(Request $request)
     {
+        // Kiểm tra admin trước
+        $admin = DB::table('tbladmin')
+            ->where('admin_loginname', $request->username)
+            ->where('admin_password', md5($request->password)) // hoặc md5 nếu DB dùng md5
+            ->first();
+
+        if ($admin) {
+            session(['admin_id' => $admin->admin_id]);
+            session(['admin_loginname' => $admin->admin_loginname]);
+            // Chuyển hướng vào trang admin
+            return redirect('/admin');
+        }
         $user = User::where('user_loginname', $request->username)
             ->where('user_password', md5($request->password))
             ->first();
@@ -24,7 +36,7 @@ class AuthController extends Controller
             session(['user_id' => $user->user_id]); // Gán session ở đây
             return redirect()->intended('/');
         }
-        return redirect()->back()->withErrors(['username' => 'Invalid credentials']);
+        return redirect()->back()->withErrors(['username' => 'Username or password is incorrect.']);
     }
 
     public function logout()
@@ -64,10 +76,10 @@ class AuthController extends Controller
 
         // Tạo Cart đồng thời với user khi đăng ký
         DB::table('tblcart')
-        ->insert([
-            'cart_id' => $user->user_id,
-            'user_id' => $user->user_id,
-        ]);
+            ->insert([
+                'cart_id' => $user->user_id,
+                'user_id' => $user->user_id,
+            ]);
 
         auth()->login($user);
 

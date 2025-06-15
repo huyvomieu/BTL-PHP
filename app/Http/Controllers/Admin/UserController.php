@@ -15,5 +15,6 @@ class UserController extends Controller
             'title_page' => 'Users'
         ]);
     }
-    
+
+
 }
