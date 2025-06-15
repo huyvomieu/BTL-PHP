@@ -17,7 +17,7 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Chờ xử lý
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statistics[0] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clock fa-2x text-gray-300"></i>
@@ -35,7 +35,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Đang xử lý
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">8</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statistics[2] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-cog fa-2x text-gray-300"></i>
@@ -53,7 +53,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Đang giao
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statistics[3] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-truck fa-2x text-gray-300"></i>
@@ -71,7 +71,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Hoàn thành
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">156</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statistics[1] ?? 0}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-check fa-2x text-gray-300"></i>
@@ -140,159 +140,54 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <strong>#DH001</strong>
-                                    </td>
-                                    <td>
-                                        <strong>Nguyễn Văn A</strong>
-                                        <br><small class="text-muted">0901234567</small>
-                                    </td>
-                                    <td>
-                                        15/12/2024
-                                        <br><small class="text-muted">10:30</small>
-                                    </td>
-                                    <td>
-                                        <strong>15,500,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">Đã thanh toán</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">Hoàn thành</span>
-                                    </td>
-                                    <td>
-                                        <small>Giao hàng nhanh</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                data-target="#orderDetailModal" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-primary" title="In hóa đơn">
-                                                <i class="fas fa-print"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>#DH002</strong>
-                                    </td>
-                                    <td>
-                                        <strong>Trần Thị B</strong>
-                                        <br><small class="text-muted">0912345678</small>
-                                    </td>
-                                    <td>
-                                        14/12/2024
-                                        <br><small class="text-muted">14:15</small>
-                                    </td>
-                                    <td>
-                                        <strong>8,200,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Chưa thanh toán</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Đang xử lý</span>
-                                    </td>
-                                    <td>
-                                        <small>COD</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-primary" title="In hóa đơn">
-                                                <i class="fas fa-print"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>#DH003</strong>
-                                    </td>
-                                    <td>
-                                        <strong>Lê Văn C</strong>
-                                        <br><small class="text-muted">0923456789</small>
-                                    </td>
-                                    <td>
-                                        13/12/2024
-                                        <br><small class="text-muted">09:20</small>
-                                    </td>
-                                    <td>
-                                        <strong>22,800,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">Đã thanh toán</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-info">Đang giao</span>
-                                    </td>
-                                    <td>
-                                        <small>Giao trong ngày</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-primary" title="In hóa đơn">
-                                                <i class="fas fa-print"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>#DH004</strong>
-                                    </td>
-                                    <td>
-                                        <strong>Phạm Thị D</strong>
-                                        <br><small class="text-muted">0934567890</small>
-                                    </td>
-                                    <td>
-                                        12/12/2024
-                                        <br><small class="text-muted">16:45</small>
-                                    </td>
-                                    <td>
-                                        <strong>5,600,000₫</strong>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">Hoàn tiền</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">Đã hủy</span>
-                                    </td>
-                                    <td>
-                                        <small>Khách hủy đơn</small>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-secondary" title="Đã hủy" disabled>
-                                                <i class="fas fa-ban"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-primary" title="In hóa đơn">
-                                                <i class="fas fa-print"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($orders as $index => $order)
+                                    <tr>
+                                        <td>
+                                            <strong>#DH{{ $order->order_id }}</strong>
+                                        </td>
+                                        <td>
+                                            <strong>{{ $order->user_fullname }}</strong>
+                                            <br><small class="text-muted">{{ $order->user_phone }}</small>
+                                        </td>
+                                        <td>
+                                            @php
+                                                $date = Carbon\Carbon::parse($order->order_created_time);
+                                            @endphp
+                                            {{ $date->format('d/m/Y') }}
+                                            <br><small class="text-muted">{{ $date->format('H:i:s') }}</small>
+                                        </td>
+                                        <td>
+                                            <strong>{{ number_format($order->order_value, 0, ',', '.') }}₫</strong>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="badge badge-success">{{ !empty($order->order_code) ? "Đã thanh toán" : "Chờ xử lý" }}</span>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="badge badge-success">{{ $order->order_status == 1 ? "Hoàn thành" : "Chờ xử lý" }}</span>
+                                        </td>
+                                        <td>
+                                            <small>{{ $order->order_notes }}</small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button btn-view-order class="btn btn-sm btn-info" data-toggle="modal"
+                                                    data-target="#orderDetailModal" title="Xem chi tiết"
+                                                    data-id="{{ $order->order_id }}">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button id="btn-edit-order" class="btn btn-sm btn-warning" title="Chỉnh sửa"
+                                                    data-id="{{ $order->order_id }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-primary" title="In hóa đơn">
+                                                    <i class="fas fa-print"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -323,7 +218,7 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Chi tiết đơn hàng #DH001</h5>
+                    <h5 class="modal-title" id="order_id"></h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -335,19 +230,19 @@
                             <table class="table table-sm">
                                 <tr>
                                     <td width="30%"><strong>Họ tên:</strong></td>
-                                    <td>Nguyễn Văn A</td>
+                                    <td id="order_receiver"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Điện thoại:</strong></td>
-                                    <td>0901234567</td>
+                                    <td id="order_phone"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Email:</strong></td>
-                                    <td>nguyenvana@email.com</td>
+                                    <td id="user_email"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Địa chỉ:</strong></td>
-                                    <td>123 Đường ABC, Quận 1, TP.HCM</td>
+                                    <td id="order_address"></td>
                                 </tr>
                             </table>
                         </div>
@@ -356,19 +251,19 @@
                             <table class="table table-sm">
                                 <tr>
                                     <td width="30%"><strong>Mã đơn:</strong></td>
-                                    <td>#DH001</td>
+                                    <td id="order_code"></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Ngày đặt:</strong></td>
-                                    <td>15/12/2024 10:30</td>
+                                    <td id="order_created_time"></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Trạng thái:</strong></td>
+                                    <td><strong id="order_status">Trạng thái:</strong></td>
                                     <td><span class="badge badge-success">Hoàn thành</span></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Thanh toán:</strong></td>
-                                    <td><span class="badge badge-success">Đã thanh toán</span></td>
+                                    <td><span id="order_payment" class="badge badge-success">Đã thanh toán</span></td>
                                 </tr>
                             </table>
                         </div>
@@ -388,22 +283,13 @@
                                     <th>Thành tiền</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="/placeholder.svg?height=50&width=50" alt="Sofa" class="img-thumbnail"
-                                            style="width: 50px;">
-                                    </td>
-                                    <td>Sofa da thật 3 chỗ ngồi</td>
-                                    <td>15,500,000₫</td>
-                                    <td>1</td>
-                                    <td>15,500,000₫</td>
-                                </tr>
+                            <tbody id="tbl-body-orders">
+
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="4" class="text-right"><strong>Tổng cộng:</strong></td>
-                                    <td><strong>15,500,000₫</strong></td>
+                                    <td><strong id="order_value"></strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -412,7 +298,7 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <h6>Ghi chú</h6>
-                            <p>Giao hàng nhanh, khách hàng yêu cầu gọi trước khi giao.</p>
+                            <p id="order_notes"></p>
                         </div>
                         <div class="col-md-6">
                             <h6>Lịch sử trạng thái</h6>
@@ -433,4 +319,41 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $('button[btn-view-order]').each(function () {
+            $(this).on('click', function () {
+                const order_id = $(this).attr('data-id');
+                $.get('/api/orders/' + order_id, function (res, status) {
+                    const { order_info, order_details } = res;
+                    $('#order_id').html("Chi tiết đơn hàng: #DH" + order_info.order_id);
+                    $('#order_code').html(order_info.order_code);
+                    $('#order_receiver').html(order_info.order_receiver);
+                    $('#order_phone').html(order_info.order_phone);
+                    $('#user_email').html(order_info.user_email);
+                    $('#order_address').html(order_info.order_address);
+                    $('#order_created_time').html(order_info.order_created_time);
+                    $('#order_notes').html(order_info.order_notes);
+                    $('#order_value').html(order_info.order_value);
+                    var html = order_details.map(element => (`
+                        <tr>
+                            <td>
+                                <img src="/assets/images/products/${element.product_image}" alt="${element.product_title}" class="img-thumbnail"
+                                    style="width: 50px;">
+                            </td>
+                            <td>${element.product_title}</td>
+                            <td>${element.product_price}₫</td>
+                            <td>${element.quantity}</td>
+                            <td>${element.product_price * element.quantity}₫</td>
+                        </tr>
+                    `));
+                    $('#tbl-body-orders').html(html)
+                }).fail(function (err) {
+                    console.log(err);
+                })
+            })
+        });
+    </script>
 @endsection
