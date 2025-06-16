@@ -165,7 +165,7 @@
                                         </td>
                                         <td>
                                             <span
-                                                class="badge badge-success">{{ $order->order_status == 1 ? "Hoàn thành" : "Chờ xử lý" }}</span>
+                                                class="badge {{ $order->order_status == 1 ? "badge-success" : "badge-warning" }} ">{{ $order->order_status == 1 ? "Hoàn thành" : "Chờ xử lý" }}</span>
                                         </td>
                                         <td>
                                             <small>{{ $order->order_notes }}</small>
