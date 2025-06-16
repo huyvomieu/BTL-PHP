@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Date;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $product->product_quantity = $request->product_quantity;
         $product->product_image = $request->product_image ?? "ghe2.jpg";
         $product->product_discount = $request->product_discount;
+        $product->create_date = Date::now();
         $product->save();
         return redirect('/admin/products');
     }

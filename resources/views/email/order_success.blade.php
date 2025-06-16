@@ -1,4 +1,4 @@
-<h2>Chào {{ $order->user_id }}</h2>
+<h2>Chào {{ $order->order_receiver }}</h2>
 <p>Cảm ơn bạn đã thanh toán đơn hàng thành công.</p>
 
 <p><strong>Mã đơn hàng:</strong> {{ $order->order_code }}</p>
