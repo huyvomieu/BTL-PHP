@@ -29,7 +29,7 @@ class OrderController extends Controller
     }
     public function confirmFromCart()
     {
-        $user_id = session('user_id');  // Mặc định là 12 vì chưa làm phần login, logout
+        $user_id = session('user_id');  
         $user = User::find($user_id);
         $carts = (new CartDetail())->getListCartById($user_id);
 
@@ -105,13 +105,12 @@ class OrderController extends Controller
     }
     public function returnVnpay(Request $request)
     {
-        $user_id = session('user_id');  // Mặc định là 12 vì chưa làm phần login, logout
-        $user = User::find($user_id);
+        $user_id = auth()->user()->user_id;  
         $order_created_time = date("Y-m-d H:i:s");
-        $order_receiver = $user->user_fullname;
-        $order_address = $user->user_address;
+        $order_receiver = auth()->user()->user_fullname;
+        $order_address = auth()->user()->user_address;
         $order_value = $request->query('vnp_Amount') / 100;
-        $order_phone = $user->user_phone;
+        $order_phone = auth()->user()->user_phone;
         $order_notes = "test";
         $order_payment = 'vnpay';
         $order_code = $request->query('vnp_TxnRef');
@@ -141,11 +140,13 @@ class OrderController extends Controller
         })->toArray();
         DB::table('tblorder_details')->insert($data);
         // XÓA GIỎ HÀNG SAU KHI THANH TOÁN SONG
-
+        DB::table('tblcart_details')
+        ->where('cart_id', $user_id)
+        ->delete();
         // GIẢM SỐ LƯỢNG PRODUCT 
 
         // Gửi mail xác nhận cho user 
-        Mail::to($user->user_email)->send(new OrderSuccessMail($order));
+        Mail::to(auth()->user()->user_email)->send(new OrderSuccessMail($order));
         
         return view('order.finish', [
             'order' => $order
