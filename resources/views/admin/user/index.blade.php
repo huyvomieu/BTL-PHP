@@ -22,7 +22,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Tổng người dùng
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3,421</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statics_users[0] + ($statics_users[1] ?? 0) }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Hoạt động
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3,156</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statics_users[0] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-check fa-2x text-gray-300"></i>
@@ -58,7 +58,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 Tạm khóa
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">265</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statics_users[1] ?? 0 }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-times fa-2x text-gray-300"></i>
@@ -150,164 +150,49 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=50&width=50" alt="Avatar" class="rounded-circle"
-                                            style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <strong>Nguyễn Văn A</strong>
-                                        <br><small class="text-muted">ID: #U001</small>
-                                        <br><small class="text-muted">Username: nguyenvana</small>
-                                    </td>
-                                    <td>
-                                        <strong>0901234567</strong>
-                                        <br><small class="text-muted">nguyenvana@email.com</small>
-                                    </td>
-                                    <td><span class="badge badge-primary">Khách hàng</span></td>
-                                    <td>
-                                        15/01/2024
-                                        <br><small class="text-muted">10:30</small>
-                                    </td>
-                                    <td>
-                                        15/12/2024
-                                        <br><small class="text-muted">14:25</small>
-                                    </td>
-                                    <td><span class="badge badge-success">Hoạt động</span></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                data-target="#userDetailModal" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa" data-toggle="modal"
-                                                data-target="#editUserModal">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Khóa tài khoản">
-                                                <i class="fas fa-ban"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=50&width=50" alt="Avatar" class="rounded-circle"
-                                            style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <strong>Trần Thị B</strong>
-                                        <br><small class="text-muted">ID: #U002</small>
-                                        <br><small class="text-muted">Username: tranthib</small>
-                                    </td>
-                                    <td>
-                                        <strong>0912345678</strong>
-                                        <br><small class="text-muted">tranthib@email.com</small>
-                                    </td>
-                                    <td><span class="badge badge-success">Admin</span></td>
-                                    <td>
-                                        10/02/2024
-                                        <br><small class="text-muted">09:15</small>
-                                    </td>
-                                    <td>
-                                        15/12/2024
-                                        <br><small class="text-muted">16:40</small>
-                                    </td>
-                                    <td><span class="badge badge-success">Hoạt động</span></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-secondary" title="Không thể khóa Admin" disabled>
-                                                <i class="fas fa-shield-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=50&width=50" alt="Avatar" class="rounded-circle"
-                                            style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <strong>Lê Văn C</strong>
-                                        <br><small class="text-muted">ID: #U003</small>
-                                        <br><small class="text-muted">Username: levanc</small>
-                                    </td>
-                                    <td>
-                                        <strong>0923456789</strong>
-                                        <br><small class="text-muted">levanc@email.com</small>
-                                    </td>
-                                    <td><span class="badge badge-info">Nhân viên</span></td>
-                                    <td>
-                                        25/03/2024
-                                        <br><small class="text-muted">14:20</small>
-                                    </td>
-                                    <td>
-                                        14/12/2024
-                                        <br><small class="text-muted">11:15</small>
-                                    </td>
-                                    <td><span class="badge badge-success">Hoạt động</span></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" title="Khóa tài khoản">
-                                                <i class="fas fa-ban"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="form-check-input"></td>
-                                    <td>
-                                        <img src="/placeholder.svg?height=50&width=50" alt="Avatar" class="rounded-circle"
-                                            style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <strong>Phạm Thị D</strong>
-                                        <br><small class="text-muted">ID: #U004</small>
-                                        <br><small class="text-muted">Username: phamthid</small>
-                                    </td>
-                                    <td>
-                                        <strong>0934567890</strong>
-                                        <br><small class="text-muted">phamthid@email.com</small>
-                                    </td>
-                                    <td><span class="badge badge-primary">Khách hàng</span></td>
-                                    <td>
-                                        12/11/2024
-                                        <br><small class="text-muted">16:45</small>
-                                    </td>
-                                    <td>
-                                        10/12/2024
-                                        <br><small class="text-muted">08:30</small>
-                                    </td>
-                                    <td><span class="badge badge-warning">Tạm khóa</span></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-info" title="Xem chi tiết">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-warning" title="Chỉnh sửa">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-success" title="Mở khóa">
-                                                <i class="fas fa-unlock"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach($users as $index => $user)
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input"></td>
+                                        <td>
+                                            <img src="https://travel-app-ui-three.vercel.app/static/media/user.248977757aa70086f759.png" alt="Avatar" class="rounded-circle"
+                                                style="width: 50px; height: 50px;">
+                                        </td>
+                                        <td>
+                                            <strong>{{ $user->user_fullname }}</strong>
+                                            <br><small class="text-muted">ID: #U{{ $user->user_id }}</small>
+                                            <br><small class="text-muted">Username: {{ $user->user_loginname }}</small>
+                                        </td>
+                                        <td>
+                                            <strong>{{ $user->user_phone }}</strong>
+                                            <br><small class="text-muted">{{ $user->user_email }}</small>
+                                        </td>
+                                        <td><span class="badge badge-primary">Khách hàng</span></td>
+                                        <td>
+                                            {{ $user->user_created_date }}
+                                            <br><small class="text-muted">10:30</small>
+                                        </td>
+                                        <td>
+                                            15/12/2024
+                                            <br><small class="text-muted">14:25</small>
+                                        </td>
+                                        <td><span class="badge badge-success">Hoạt động</span></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                    data-target="#userDetailModal" title="Xem chi tiết">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Chỉnh sửa" data-toggle="modal"
+                                                    data-target="#editUserModal">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Khóa tài khoản">
+                                                    <i class="fas fa-ban"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
