@@ -33,7 +33,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Cài đặt</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/login">
                                     <i class="fas fa-sign-out-alt"></i> Đăng xuất
                                 </a>
                             </div>
