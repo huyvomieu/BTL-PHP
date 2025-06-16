@@ -7,8 +7,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Admin\CategoryController;
 
-require __DIR__.'/admin.php';
+require __DIR__ . '/admin.php';
 
 // Routes Pages
 Route::get('/', [PageController::class, 'index']);
@@ -47,3 +48,7 @@ Route::get('/profilechange', [UserController::class, 'profilechange'])->name('pr
 Route::post('/profilechange', [UserController::class, 'profileUpdate'])->name('profileUpdate');
 Route::get('/passchange', [UserController::class, 'passChange'])->name('passChange');
 Route::post('/passchange', [UserController::class, 'passUpdate'])->name('passUpdate');
+// Category Routes
+Route::post('/category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
+Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
