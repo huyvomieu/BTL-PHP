@@ -18,7 +18,7 @@
                         <td colspan="2">SDT: {{ $user->user_phone }}</td>
                     </tr>
                     <tr>
-                        <td colspan="4">Ghi chú: order_notes </td>
+                        <td colspan="8">Ghi chú: <input type="text" id="order_notes"> </td>
                     </tr>
                     <tr class="text-center">
                         <th scope="col">STT</th>
@@ -43,7 +43,7 @@
                             </td>
                         </tr>
                         @php
-                            $total += $cart->product_price
+                            $total += $cart->product_price * $cart->quantity;
                         @endphp
                     @endforeach
 
@@ -58,10 +58,15 @@
                     <form method="POST" action="/order/process-payment?method=vnpay">
                         @csrf
                         <p class="mt-2 text-center">Phương Thức Thanh Toán</p>
-                        <input class="d-block btn btn-success mt-3 w-100" type="submit" name="cod"
-                            value="Cash on Delivery (COD)">
                         <input class="d-block btn btn-primary mt-3 w-100" type="submit" name="vnpay"
                             value="Payment via VNPAY">
+                    </form>
+                    <form method="POST" action="/order/process-payment?method=cod">
+                        @csrf
+                        <input type="hidden" name="order_value" value="{{ $total }}">
+                        <input type="hidden" name="order_notes" id="order_notes_mapping">
+                        <input class="d-block btn btn-success mt-3 w-100" type="submit" name="cod"
+                            value="Cash on Delivery (COD)">
                     </form>
                     <form method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
                         action="/order/momo_qr_payment">
@@ -81,4 +86,13 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#order_notes').on('input', function () {
+                $('#order_notes_mapping').val($(this).val());
+            });
+        });
+    </script>
 @endsection

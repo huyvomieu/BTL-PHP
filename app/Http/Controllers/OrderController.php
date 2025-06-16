@@ -29,7 +29,7 @@ class OrderController extends Controller
     }
     public function confirmFromCart()
     {
-        $user_id = session('user_id');  
+        $user_id = session('user_id');
         $user = User::find($user_id);
         $carts = (new CartDetail())->getListCartById($user_id);
 
@@ -101,11 +101,60 @@ class OrderController extends Controller
             } else {
                 echo 'Lỗi!';
             }
+        } else if ($method == 'cod') {
+            $order_code = rand(1, 10000);
+            $user_id = auth()->user()->user_id;
+            $order_created_time = date("Y-m-d H:i:s");
+            $order_receiver = auth()->user()->user_fullname;
+            $order_address = auth()->user()->user_address;
+            $order_value = (int)$request->input('order_value');
+            $order_phone = auth()->user()->user_phone;
+            $order_notes = $request->order_notes;
+            $order_payment = 'cod';
+            // INSERT BẢN GHI VÀO BẢNG ORDER
+            $order = Order::create([
+                'user_id' => $user_id,
+                'order_created_time' => $order_created_time,
+                'order_address' => $order_address,
+                'order_notes' => $order_notes,
+                'order_value' => $order_value,
+                'order_phone' => $order_phone,
+                'order_status' => 0,
+                'order_receiver' => $order_receiver,
+                'order_payment' => $order_payment,
+                'order_code' => $order_code,
+            ]);
+            // DUYỆT INSERT BẢN GHI VÀO BẢNG ORDER_DETAILS
+            $products = (new CartDetail())->getListCartById($user_id);
+            $data = $products->map(function ($product) use ($order) {
+                return [
+                    'order_id' => $order->order_id,
+                    'product_id' => $product->product_id,
+                    'quantity' => $product->quantity, // mặc định số lượng
+                    'order_code' => $order->order_code,
+                    'purchase_price' => $product->product_price,
+                ];
+            })->toArray();
+            DB::table('tblorder_details')->insert($data);
+            // XÓA GIỎ HÀNG SAU KHI THANH TOÁN SONG
+            DB::table('tblcart_details')
+                ->where('cart_id', $user_id)
+                ->delete();
+            // GIẢM SỐ LƯỢNG PRODUCT 
+
+            // Gửi mail xác nhận cho user 
+            Mail::to(auth()->user()->user_email)->send(new OrderSuccessMail($order));
+
+            return view('order.finish', [
+                'order' => $order
+            ]);
+        } else {
+            echo "Chức năng đang được phát triển! Vui lòng thanh toán bằng phương thức khác";
         }
     }
     public function returnVnpay(Request $request)
     {
-        $user_id = auth()->user()->user_id;  
+        $user_id = auth()->user()->user_id;
         $order_created_time = date("Y-m-d H:i:s");
         $order_receiver = auth()->user()->user_fullname;
         $order_address = auth()->user()->user_address;
@@ -115,7 +164,7 @@ class OrderController extends Controller
         $order_payment = 'vnpay';
         $order_code = $request->query('vnp_TxnRef');
         // INSERT BẢN GHI VÀO BẢNG ORDER
-        $order =  Order::create([
+        $order = Order::create([
             'user_id' => $user_id,
             'order_created_time' => $order_created_time,
             'order_address' => $order_address,
@@ -141,13 +190,13 @@ class OrderController extends Controller
         DB::table('tblorder_details')->insert($data);
         // XÓA GIỎ HÀNG SAU KHI THANH TOÁN SONG
         DB::table('tblcart_details')
-        ->where('cart_id', $user_id)
-        ->delete();
+            ->where('cart_id', $user_id)
+            ->delete();
         // GIẢM SỐ LƯỢNG PRODUCT 
 
         // Gửi mail xác nhận cho user 
         Mail::to(auth()->user()->user_email)->send(new OrderSuccessMail($order));
-        
+
         return view('order.finish', [
             'order' => $order
         ]);
@@ -156,23 +205,24 @@ class OrderController extends Controller
     {
         $user_id = session('user_id');
         $orders = DB::table('tblorder')
-        ->where('user_id', $user_id )
-        ->get();
+            ->where('user_id', $user_id)
+            ->get();
         return view('order.history', [
             'orders' => $orders
         ]);
     }
-    public function detail($id) {
+    public function detail($id)
+    {
         $order_info = DB::table('tblorder')
-        ->where('order_id', $id )
-        ->select(['order_receiver', 'order_phone' , 'order_created_time', 'order_notes', 'order_code', 'order_payment'])
-        ->first();
+            ->where('order_id', $id)
+            ->select(['order_receiver', 'order_phone', 'order_created_time', 'order_notes', 'order_code', 'order_payment'])
+            ->first();
 
         $order_details = DB::table('tblorder')
-        ->where('tblorder.order_id', $id )
-        ->join('tblorder_details', 'tblorder.order_id', '=' , 'tblorder_details.order_id')
-        ->join('tblproduct', 'tblorder_details.product_id', '=', 'tblproduct.product_id')
-        ->get();
+            ->where('tblorder.order_id', $id)
+            ->join('tblorder_details', 'tblorder.order_id', '=', 'tblorder_details.order_id')
+            ->join('tblproduct', 'tblorder_details.product_id', '=', 'tblproduct.product_id')
+            ->get();
 
         return view('order.detail', [
             'order_details' => $order_details,
